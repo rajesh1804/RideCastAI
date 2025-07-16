@@ -9,11 +9,19 @@ INPUT_FILE = "data/yellow_tripdata_2023-01.parquet"
 OUTPUT_FILE = "data/processed_nyc_taxi.csv"
 
 def load_data():
+    """Load NYC taxi data from a Parquet file.
+    Returns:
+        pd.DataFrame: DataFrame containing the raw NYC taxi data."""
     df = pd.read_parquet(INPUT_FILE)
     print(f"Loaded {len(df)} rows.")
     return df
 
 def clean_data(df):
+    """Clean the NYC taxi data.
+    Args:
+        df (pd.DataFrame): DataFrame containing the raw NYC taxi data.
+    Returns:
+        pd.DataFrame: Cleaned DataFrame with necessary columns and no missing values."""
     df = df.dropna(subset=["tpep_pickup_datetime", "tpep_dropoff_datetime", "trip_distance", "fare_amount"])
     df = df[(df["trip_distance"] > 0) & (df["fare_amount"] > 0)]
 
@@ -26,6 +34,11 @@ def clean_data(df):
     return df
 
 def feature_engineering(df):
+    """Perform feature engineering on the NYC taxi data.
+    Args:
+        df (pd.DataFrame): DataFrame containing the cleaned NYC taxi data.
+    Returns:
+        pd.DataFrame: DataFrame with additional features for model training."""
     df["pickup_hour"] = df["tpep_pickup_datetime"].dt.hour
     df["pickup_dayofweek"] = df["tpep_pickup_datetime"].dt.dayofweek
     df["is_weekend"] = df["pickup_dayofweek"].isin([5,6]).astype(int)
@@ -39,6 +52,10 @@ def feature_engineering(df):
     return df
 
 def save_processed_data(df):
+    """Save the processed NYC taxi data to a CSV file.
+    Args:
+        df (pd.DataFrame): DataFrame containing the processed NYC taxi data.
+    """
     columns_to_save = [
         "tpep_pickup_datetime", "tpep_dropoff_datetime",
         "PULocationID", "DOLocationID",

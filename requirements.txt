@@ -7,5 +7,4 @@ pandas
 plotly
 tqdm
 pyarrow
-geopy
-geopandas
+python-dotenv
