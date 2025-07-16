@@ -54,36 +54,36 @@ if st.button("🔍 Predict ETA & Fare"):
     col3.metric("↔️ Fare Range", f"${fare_low} - ${fare_high}")
     st.caption(f"🧠 Prediction completed in {duration} ms")
 
-# ------------------------------------
-# 🗺️ Heatmap Section
-# ------------------------------------
-st.header("🔥 NYC Ride Demand Heatmap")
+    # ------------------------------------
+    # 🗺️ Heatmap Section
+    # ------------------------------------
+    st.header("🔥 NYC Ride Demand Heatmap")
 
-@st.cache_data
-def load_heatmap_data():
-    import numpy as np
-    np.random.seed(42)
-    df = pd.DataFrame({
-        "lat": np.random.uniform(40.6, 40.9, 100),
-        "lon": np.random.uniform(-74.05, -73.75, 100),
-        "demand": np.random.randint(5, 100, 100)
-    })
-    return df
+    @st.cache_data
+    def load_heatmap_data():
+        import numpy as np
+        np.random.seed(42)
+        df = pd.DataFrame({
+            "lat": np.random.uniform(40.6, 40.9, 100),
+            "lon": np.random.uniform(-74.05, -73.75, 100),
+            "demand": np.random.randint(5, 100, 100)
+        })
+        return df
 
-heatmap_df = load_heatmap_data()
+    heatmap_df = load_heatmap_data()
 
-fig = px.density_mapbox(
-    heatmap_df,
-    lat="lat",
-    lon="lon",
-    z="demand",
-    radius=10,
-    center=dict(lat=40.75, lon=-73.9),
-    zoom=10,
-    mapbox_style="carto-positron",
-)
+    fig = px.density_mapbox(
+        heatmap_df,
+        lat="lat",
+        lon="lon",
+        z="demand",
+        radius=10,
+        center=dict(lat=40.75, lon=-73.9),
+        zoom=10,
+        mapbox_style="carto-positron",
+    )
 
-st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True)
 
 # Footer
 st.markdown("---")
