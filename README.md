@@ -179,7 +179,7 @@ And returns:
 👉 Try it on [Hugging Face](https://huggingface.co/spaces/rajesh1804/RideCastAI)
 
 <p align="center">
-  <img src="https://github.com/rajesh1804/RideCastAI/assets/ridecastai-demo.gif" alt="Demo" width="800"/>
+  <img src="https://github.com/rajesh1804/RideCastAI/tree/main/assets/ridecastai-demo.gif" alt="Demo" width="800"/>
 </p>
 
 ---
