@@ -1,0 +1,11 @@
+streamlit
+scikit-learn
+xgboost
+joblib
+numpy
+pandas
+plotly
+tqdm
+pyarrow
+geopy
+geopandas

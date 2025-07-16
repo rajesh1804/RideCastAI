@@ -1,0 +1,3 @@
+Quantile 10: 2.72
+Quantile 50: 1.85
+Quantile 90: 3.44
