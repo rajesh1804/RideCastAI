@@ -5,6 +5,11 @@ import joblib
 from features import load_processed_data, get_feature_target_split
 import os
 import time
+import numpy as np
+
+# Fix RNG state for backward compatibility
+np.random.bit_generator = None
+
 
 print("📥 Loading processed data...")
 df = load_processed_data()
@@ -31,7 +36,7 @@ print(f"📊 ETA MAE: {mae:.2f} minutes")
 # Save MAE to file for UI
 os.makedirs("src/models", exist_ok=True)
 with open("src/models/eta_metrics.txt", "w") as f:
-    f.write(f"MAE: {mae:.2f} minutes\n")
+    f.write(f"{mae:.2f} minutes\n")
 
 joblib.dump(model, "src/models/eta_model.pkl")
-print("💾 ETA model saved to src/models/eta_model2.pkl")
+print("💾 ETA model saved to src/models/eta_model.pkl")

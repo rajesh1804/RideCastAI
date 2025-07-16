@@ -4,6 +4,11 @@ from sklearn.metrics import mean_absolute_error
 import joblib
 from features import load_processed_data, get_feature_target_split
 import time
+import numpy as np
+
+# Fix RNG state for backward compatibility
+np.random.bit_generator = None
+
 
 print("🔄 Loading and preprocessing data...")
 start = time.time()
@@ -43,6 +48,6 @@ with open("src/models/fare_metrics.txt", "w") as f:
     for q in quantiles:
         preds = models[q].predict(X_test)
         mae = mean_absolute_error(y_test, preds)
-        f.write(f"MAE @ quantile {q}: {mae:.2f}\n")
+        f.write(f"Quantile {q}: {mae:.2f}\n")
 
 print("\n🎉 All quantile models trained and saved successfully.")
