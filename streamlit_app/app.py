@@ -72,7 +72,7 @@ def load_heatmap_data():
 
 heatmap_df = load_heatmap_data()
 
-fig = px.density_map(
+fig = px.density_mapbox(
     heatmap_df,
     lat="lat",
     lon="lon",
@@ -80,7 +80,7 @@ fig = px.density_map(
     radius=10,
     center=dict(lat=40.75, lon=-73.9),
     zoom=10,
-    map_style="carto-positron",
+    mapbox_style="carto-positron",
 )
 
 st.plotly_chart(fig, use_container_width=True)

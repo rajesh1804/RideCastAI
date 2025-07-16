@@ -40,7 +40,7 @@ for q in quantiles:
 
     print(f"✅ Done. MAE @ quantile {q}: {mae:.2f} | Time taken: {time.time() - q_start:.2f}s")
 
-    model_path = f"src/models/fare_model_q{int(q*100)}.pkl2"
+    model_path = f"src/models/fare_model_q{int(q*100)}.pkl"
     joblib.dump(model, model_path)
     print(f"💾 Model saved to {model_path}")
 

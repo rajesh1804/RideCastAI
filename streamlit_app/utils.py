@@ -4,6 +4,7 @@ import time
 import urllib.request
 import os
 from dotenv import load_dotenv
+import pandas as pd
 
 load_dotenv()
 
@@ -50,9 +51,15 @@ def extract_features(hour, dayofweek, distance):
     hour_sin = np.sin(2 * np.pi * hour / 24)
     hour_cos = np.cos(2 * np.pi * hour / 24)
 
-    return [[
-        distance, hour, dayofweek, is_weekend, is_rush, hour_sin, hour_cos
-    ]]
+    return pd.DataFrame([{
+        "trip_distance": distance,
+        "pickup_hour": hour,
+        "pickup_dayofweek": dayofweek,
+        "is_weekend": is_weekend,
+        "is_rush_hour": is_rush,
+        "pickup_hour_sin": hour_sin,
+        "pickup_hour_cos": hour_cos
+    }])
 
 def predict_eta_fare(hour, dayofweek, distance):
     """Predict ETA and fare based on input features.
